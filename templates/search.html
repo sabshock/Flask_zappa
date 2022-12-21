@@ -1,0 +1,50 @@
+{% extends "base.html"%}
+{% include 'header.html'%}
+{% block head %}
+{% include 'navbar.html'%}
+{% endblock %}
+
+{% block body %}
+<br/>
+<h4>The Customer "{{customer_id}}" has following orders</h4>
+<table class="table table-hover table-bordered">
+    <thead>
+      <h3>{{table_name}}</h3>
+      <th scope="col">OrderID</th>
+        <th scope="col">CustomerID</th>
+        <th scope="col">EmployeeID</th>
+        <th scope="col">OrderDate</th>
+        <th scope="col">RequiredDate</th>
+        <th scope="col">ShippedDate</th>
+        <th scope="col">ShipVia</th>
+        <th scope="col">Freight</th>
+        <th scope="col">ShipName</th>
+        <th scope="col">ShipAddress</th>
+        <th scope="col">ShipCity</th>
+        <th scope="col">ShipRegion</th>
+        <th scope="col">ShipPostalCode</th>
+        <th scope="col">ShipCountry</th>
+    </thead>
+    <tbody class="table-group-divider">
+          {% for d in data %}
+          <tr>
+            <td>{{d.OrderID}}</td>
+            <td>{{d.CustomerID}}</td>
+            <td>{{d.EmployeeID}}</td>
+            <td>{{d.OrderDate}}</td>
+            <td>{{d.RequiredDate}}</td>
+            <td>{{d.ShippedDate}}</td>
+            <td>{{d.ShipVia}}</td>
+            <td>{{d.Freight}}</td>
+            <td>{{d.ShipName}}</td>
+            <td>{{d.ShipAddress}}</td>
+            <td>{{d.ShipCity}}</td>
+            <td>{{d.ShipRegion}}</td>
+            <td>{{d.ShipPostalCode}}</td>
+            <td>{{d.ShipCountry}}</td>
+          </tr>
+          {% endfor %}
+    </tbody>
+  </table>
+  
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html"%}
+{% include 'header.html'%}
+{% block head %}
+{% include 'navbar.html'%}
+{% endblock %}
+
+{% block body %}
+
+{% for msg in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>        
+{% endfor%}
+<h3>Order Update {{order_id}}</h3>
+    <br/>
+    <form action="/editorder/{{order_id}}"method = 'POST'>
+        {{form.CustomerID.label(class='form-label')}}
+        {{form.CustomerID(class='form-control',value=order_to_update.CustomerID)}}
+        <br/>
+        {{form.EmployeeID.label(class='form-label')}}
+        {{form.EmployeeID(class='form-control',value=order_to_update.EmployeeID)}}
+        <br/>
+        {{form.OrderDate.label(class='form-label')}}
+        {{form.OrderDate(class='form-control',value=order_to_update.OrderDate)}}
+        <br/>
+        {{form.RequiredDate.label(class='form-label')}}
+        {{form.RequiredDate(class='form-control',value=order_to_update.RequiredDate)}}
+        <br/>
+        {{form.ShippedDate.label(class='form-label')}}
+        {{form.ShippedDate(class='form-control',value=order_to_update.ShippedDate)}}
+        <br/>
+        {{form.ShipVia.label(class='form-label')}}
+        {{form.ShipVia(class='form-control',value=order_to_update.ShipVia)}}
+        <br/>
+        {{form.Freight.label(class='form-label')}}
+        {{form.Freight(class='form-control',value=order_to_update.Freight)}}
+        <br/>
+        {{form.ShipName.label(class='form-label')}}
+        {{form.ShipName(class='form-control',value=order_to_update.ShipName)}}
+        <br/>
+        {{form.ShipAddress.label(class='form-label')}}
+        {{form.ShipAddress(class='form-control',value=order_to_update.ShipAddress)}}
+        <br/>
+        {{form.ShipCity.label(class='form-label')}}
+        {{form.ShipCity(class='form-control',value=order_to_update.ShipCity)}}
+        <br/>
+        {{form.ShipRegion.label(class='form-label')}}
+        {{form.ShipRegion(class='form-control',value=order_to_update.ShipRegion)}}
+        <br/>
+        {{form.ShipPostalCode.label(class='form-label')}}
+        {{form.ShipPostalCode(class='form-control',value=order_to_update.ShipPostalCode)}}
+        <br/>
+        {{form.ShipCountry.label(class='form-label')}}
+        {{form.ShipCountry(class='form-control',value=order_to_update.ShipCountry)}}
+        <br/>
+        {{form.Add(class = 'btn btn-primary')}}
+    </form>
+{% endblock %}

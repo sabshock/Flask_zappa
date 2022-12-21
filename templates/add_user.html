@@ -1,0 +1,51 @@
+{% extends "base.html"%}
+{% include 'header.html'%}
+{% block head %}
+{% include 'navbar.html'%}
+{% endblock %}
+
+{% block body %}
+{% if user.CustomerID %}
+    <h3>Add User</h3>
+    <br/>
+    <form method = 'POST'>
+        {{form.hidden_tag()}}
+        {{form.CustomerID.label(class='form-label')}}
+        {{form.CustomerID(class='form-control')}}
+        <br/>
+        {{form.CompanyName.label(class='form-label')}}
+        {{form.CompanyName(class='form-control')}}
+        <br/>
+        {{form.ContactName.label(class='form-label')}}
+        {{form.ContactName(class='form-control')}}
+        <br/>
+        {{form.ContactTitle.label(class='form-label')}}
+        {{form.ContactTitle(class='form-control')}}
+        <br/>
+        {{form.Address.label(class='form-label')}}
+        {{form.Address(class='form-control')}}
+        <br/>
+        {{form.City.label(class='form-label')}}
+        {{form.City(class='form-control')}}
+        <br/>
+        {{form.Region.label(class='form-label')}}
+        {{form.Region(class='form-control')}}
+        <br/>
+        {{form.PostalCode.label(class='form-label')}}
+        {{form.PostalCode(class='form-control')}}
+        <br/>
+        {{form.Country.label(class='form-label')}}
+        {{form.Country(class='form-control')}}
+        <br/>
+        {{form.Phone.label(class='form-label')}}
+        {{form.Phone(class='form-control')}}
+        <br/>
+        {{form.Fax.label(class='form-label')}}
+        {{form.Fax(class='form-control')}}
+        <br/>
+        {{form.Add(class = 'btn btn-primary')}}
+    </form>
+{% else %}
+    <h3>User already exist</h3>
+{% endif%}
+{% endblock %}

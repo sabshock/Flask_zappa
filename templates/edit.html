@@ -1,0 +1,58 @@
+{% extends "base.html"%}
+{% include 'header.html'%}
+{% block head %}
+{% include 'navbar.html'%}
+{% endblock %}
+{% block body %}
+{% for msg in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>        
+{% endfor%}
+{% if name %}
+    {% include 'customer_table.html'%}
+{% else %}
+    <h3>Update User {{customer_id}}</h3>
+    <br/>
+    <form action="/editcustomer/{{customer_id}}"method = 'POST'>
+        
+        {{form.CompanyName.label(class='form-label')}}
+        {{form.CompanyName(class='form-control',value=name_to_update.CompanyName)}}
+        <br/>
+        {{form.ContactName.label(class='form-label')}}
+        {{form.ContactName(class='form-control',value=name_to_update.ContactName)}}
+        <br/>
+        {{form.ContactTitle.label(class='form-label')}}
+        {{form.ContactTitle(class='form-control',value=name_to_update.ContactTitle)}}
+        <br/>
+        {{form.Address.label(class='form-label')}}
+        {{form.Address(class='form-control',value=name_to_update.Address)}}
+        <br/>
+        {{form.City.label(class='form-label')}}
+        {{form.City(class='form-control',value=name_to_update.City)}}
+        <br/>
+        {{form.Region.label(class='form-label')}}
+        {{form.Region(class='form-control',value=name_to_update.Region)}}
+        <br/>
+        {{form.PostalCode.label(class='form-label')}}
+        {{form.PostalCode(class='form-control',value=name_to_update.PostalCode)}}
+        <br/>
+        {{form.Country.label(class='form-label')}}
+        {{form.Country(class='form-control',value=name_to_update.Country)}}
+        <br/>
+        {{form.Phone.label(class='form-label')}}
+        {{form.Phone(class='form-control',value=name_to_update.Phone)}}
+        <br/>
+        {{form.Fax.label(class='form-label')}}
+        {{form.Fax(class='form-control',value=name_to_update.Fax)}}
+        <br/>
+        {{form.Add(class = 'btn btn-primary')}}
+    </form>
+{% endif%}
+{% endblock %}
+
+{{form.hidden_tag()}}
+        {{form.CustomerID.label(class='form-label')}}
+        {{form.CustomerID(class='form-control',value=name_to_update.CustomerID)}}
+        <br/>

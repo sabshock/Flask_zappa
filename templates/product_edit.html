@@ -1,0 +1,56 @@
+{% extends "base.html"%}
+{% include 'header.html'%}
+{% block head %}
+{% include 'navbar.html'%}
+{% endblock %}
+
+{% block body %}
+
+{% for msg in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>        
+{% endfor%}
+<h3>Product Update {{product_id}}</h3>
+    <br/>
+    <form action="/editproduct/{{product_id}}"method = 'POST'>
+        {{form.ProductName.label(class='form-label')}}
+        {{form.ProductName(class='form-control',value=product_to_update.ProductName)}}
+        <br/>
+        {{form.SupplierID.label(class='form-label')}}
+        {{form.SupplierID(class='form-control',value=product_to_update.SupplierID)}}
+        <br/>
+        {{form.CategoryID.label(class='form-label')}}
+        {{form.CategoryID(class='form-control',value=product_to_update.CategoryID)}}
+        <br/>
+        {{form.QuantityPerUnit.label(class='form-label')}}
+        {{form.QuantityPerUnit(class='form-control',value=product_to_update.QuantityPerUnit)}}
+        <br/>
+        {{form.UnitPrice.label(class='form-label')}}
+        {{form.UnitPrice(class='form-control',value=product_to_update.UnitPrice)}}
+        <br/>
+        {{form.UnitsInStock.label(class='form-label')}}
+        {{form.UnitsInStock(class='form-control',value=product_to_update.UnitsInStock)}}
+        <br/>
+        {{form.UnitsOnOrder.label(class='form-label')}}
+        {{form.UnitsOnOrder(class='form-control',value=product_to_update.UnitsOnOrder)}}
+        <br/>
+        {{form.ReorderLevel.label(class='form-label')}}
+        {{form.ReorderLevel(class='form-control',value=product_to_update.ReorderLevel)}}
+        <br/>
+        {{form.Discontinued.label(class='form-label')}}
+        {{form.Discontinued(class='form-control',value=product_to_update.Discontinued)}}
+        <br/>
+        {{form.Add(class = 'btn btn-primary')}}
+    </form>
+{% endblock %}
+
+
+
+
+
+
+
+
+
