@@ -15,6 +15,7 @@
 <h3>Product Update {{product_id}}</h3>
     <br/>
     <form action="/editproduct/{{product_id}}"method = 'POST'>
+        {{form.hidden_tag()}}
         {{form.ProductName.label(class='form-label')}}
         {{form.ProductName(class='form-control',value=product_to_update.ProductName)}}
         <br/>

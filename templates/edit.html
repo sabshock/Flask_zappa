@@ -16,7 +16,7 @@
     <h3>Update User {{customer_id}}</h3>
     <br/>
     <form action="/editcustomer/{{customer_id}}"method = 'POST'>
-        
+        {{form.hidden_tag()}}
         {{form.CompanyName.label(class='form-label')}}
         {{form.CompanyName(class='form-control',value=name_to_update.CompanyName)}}
         <br/>

@@ -15,6 +15,7 @@
 <h3>Order Update {{order_id}}</h3>
     <br/>
     <form action="/editorder/{{order_id}}"method = 'POST'>
+        {{form.hidden_tag()}}
         {{form.CustomerID.label(class='form-label')}}
         {{form.CustomerID(class='form-control',value=order_to_update.CustomerID)}}
         <br/>

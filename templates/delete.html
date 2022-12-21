@@ -1,0 +1,23 @@
+{% extends "base.html"%}
+{% include 'header.html'%}
+{% block head %}
+{% include 'navbar.html'%}
+{% endblock %}
+
+{% block body %}
+
+{% for msg in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>        
+{% endfor%}
+<h3>Delete a {{name}}</h3>
+    <br/>
+    <form action={{route}} method = 'POST'>
+        {{form.hidden_tag()}}
+        {{form.id.label(class='form-label')}}
+        {{form.id(class='form-control')}}
+        <br/>
+        {{form.delete(class = 'btn btn-primary')}}
+{% endblock %}

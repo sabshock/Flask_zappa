@@ -163,6 +163,80 @@ def search():
         return render_template('search.html',form=form,customer_id = customer_id,data=data)
 
 
+class cust_delete_form(FlaskForm):
+    id = StringField('CustomerID',validators=[DataRequired()])
+    delete  = SubmitField('Delete')
+
+@app.route('/deletecustomer',methods = ['POST','GET'])
+def delete_customer():
+    form = cust_delete_form()
+    to_delete = None
+    if request.method == 'POST':
+        to_delete = request.form['id']
+        try:
+            check = Customer_table.get_item(Key={'CustomerID':to_delete})['Item']
+            Customer_table.delete_item(Key = {'CustomerID':to_delete})
+            form.id.data = ''
+            flash(f'Customer {to_delete} has been Deleted')
+            return render_template('delete.html',form=form,table = 'customer_table',name = 'Customer',route = '/deletecustomer')
+        except KeyError:
+            flash(f'The Customer {to_delete} does not exist in the customer table')
+            form.id.data = ''
+            return render_template('delete.html',form=form,table = 'customer_table',name = 'Customer',route = '/deletecustomer')
+    else:
+        form.id.data = ''
+        return render_template('delete.html',form=form,table = 'customer_table',name = 'Customer',route = '/deletecustomer')
+
+class prod_delete_form(FlaskForm):
+    id = StringField('ProductID',validators=[DataRequired()])
+    delete  = SubmitField('Delete')
+
+@app.route('/deleteproduct',methods = ['POST','GET'])
+def delete_product():
+    form = prod_delete_form()
+    to_delete = None
+    if request.method == 'POST':
+        to_delete = request.form['id']
+        try:
+            check = Product_table.get_item(Key={'ProductID':to_delete})['Item']
+            Product_table.delete_item(Key = {'ProductID':to_delete})
+            form.id.data = ''
+            flash(f'Product {to_delete} has been Deleted')
+            return render_template('delete.html',form=form,table = 'product_table',name = 'Product',route = '/deleteproduct')
+        except KeyError:
+            flash(f'The Product {to_delete} does not exist in the product table')
+            form.id.data = ''
+            return render_template('delete.html',form=form,table = 'product_table',name = 'Product',route = '/deleteproduct')
+    else:
+        form.id.data = ''
+        return render_template('delete.html',form=form,table = 'product_table',name = 'Product',route = '/deleteproduct')
+
+
+class order_delete_form(FlaskForm):
+    id = StringField('OrderID',validators=[DataRequired()])
+    delete  = SubmitField('Delete')
+
+@app.route('/deleteorder',methods = ['POST','GET'])
+def delete_order():
+    form = order_delete_form()
+    to_delete = None
+    if request.method == 'POST':
+        to_delete = request.form['id']
+        try:
+            check = Order_table.get_item(Key={'OrderID':to_delete})['Item']
+            Order_table.delete_item(Key = {'OrderID':to_delete})
+            form.id.data = ''
+            flash(f'Order {to_delete} has been Deleted')
+            return render_template('delete.html',form=form,table = 'order_table',name = 'Order',route = '/deleteorder')
+        except KeyError:
+            flash(f'The Order {to_delete} does not exist in Order table')
+            form.id.data = ''
+            return render_template('delete.html',form=form,table = 'order_table',name = 'Order',route = '/deleteorder')
+    else:
+        form.id.data = ''
+        return render_template('delete.html',form=form,table = 'order_table',name = 'Order',route = '/deleteorder')
+
+
 
 if __name__ =='__main__':
     app.run(debug=True)
